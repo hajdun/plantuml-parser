@@ -41,7 +41,8 @@
     "mocha": "^8.1.3",
     "nyc": "^15.1.0",
     "pegjs": "^0.10.0",
-    "source-map-support": "^0.5.19",
+    "rollup": "^4.13.2",
+    "source-map-support": "^0.5.21",
     "ts-node": "^9.0.0",
     "ts-pegjs": "^0.2.7",
     "typescript": "^4.0.3"
@@ -53,11 +54,17 @@
     "prepublishOnly": "git clean -f -f -d -x -e 'node_modules' && npm run build",
     "start": "node dist/bin/cli.js",
     "build": "gulp build",
+    "build:frontend": "rollup build",
     "test": "nyc gulp test && nyc check-coverage --lines 65 --functions 75 --branches 50 && eslint '**/*.js' '**/*.ts' && git diff --check $(git hash-object -t tree /dev/null)",
     "watch": "gulp watch",
     "format-fix": "eslint --fix '**/*.js' '**/*.ts'",
     "fixtures": "gulp test-fixtures-update && git add -u test/fixtures || true",
     "coverage-report": "nyc report --reporter=lcov"
+  },
+  "overrides":{
+    "foo":{
+      "source-map": "0.7.4"
+    }
   },
   "repository": {
     "type": "git",
